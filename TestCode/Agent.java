@@ -8,6 +8,7 @@ import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
 import lejos.robotics.chassis.WheeledChassis;
 import lejos.robotics.navigation.MovePilot;
+import lejos.utility.Delay;
 
 public class Agent {
 	 private EV3MediumRegulatedMotor pince = new EV3MediumRegulatedMotor(MotorPort.B);
@@ -53,15 +54,18 @@ public class Agent {
 		 d.fetchSample(sample, 0);
 		 return sample[0];
 	 }
-	 
-	public boolean Touche() {
+		public boolean Touche() {
 			return uTouch.isPressed();
 		}
 		
 	public static void main(String[] args) {
-			Agent cedric = new Agent();
-			cedric.avance();
-		}
+		Agent cedric = new Agent();
+		while (true) {
+			System.out.println(cedric.Distance());
+			Delay.msDelay(5000);
+			}
+	}
+		
 
 }
 

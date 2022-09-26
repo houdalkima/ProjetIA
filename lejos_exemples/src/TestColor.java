@@ -135,6 +135,22 @@ public static boolean goMessage() {
 					color = "green";
 				}
 				
+				scalaire = TestColor.scalaire(sample, yellow);
+				//System.out.println(scalaire);
+				//Button.ENTER.waitForPressAndRelease();
+				if (scalaire < minscal) {
+					minscal = scalaire;
+					color = "yellow";
+				}
+				
+				scalaire = TestColor.scalaire(sample, white);
+				//System.out.println(scalaire);
+				//Button.ENTER.waitForPressAndRelease();
+				if (scalaire < minscal) {
+					minscal = scalaire;
+					color = "white";
+				}
+				
 				scalaire = TestColor.scalaire(sample, black);
 				//System.out.println(scalaire);
 				//Button.ENTER.waitForPressAndRelease();

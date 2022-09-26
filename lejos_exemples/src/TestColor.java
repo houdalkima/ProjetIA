@@ -84,6 +84,16 @@ public static boolean goMessage() {
 			Button.ENTER.waitForPressAndRelease();
 			float[] green = new float[average.sampleSize()];
 			average.fetchSample(green, 0);
+			
+			System.out.println("Press enter to calibrate yellow...");
+			Button.ENTER.waitForPressAndRelease();
+			float[] yellow = new float[average.sampleSize()];
+			average.fetchSample(yellow, 0);
+			
+			System.out.println("Press enter to calibrate white...");
+			Button.ENTER.waitForPressAndRelease();
+			float[] white = new float[average.sampleSize()];
+			average.fetchSample(white, 0);
 
 			System.out.println("Press enter to calibrate black...");
 			Button.ENTER.waitForPressAndRelease();

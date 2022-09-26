@@ -53,6 +53,11 @@ public class Agent {
 		 d.fetchSample(sample, 0);
 		 return sample[0];
 	 }
+	 
+	public boolean Touche() {
+			return uTouch.isPressed();
+		}
+		
 	public static void main(String[] args) {
 			Agent cedric = new Agent();
 			cedric.avance();

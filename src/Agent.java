@@ -21,13 +21,21 @@ public class Agent {
 	 private TouchSensor uTouch = new TouchSensor(SensorPort.S1);
 	 private EV3UltrasonicSensor ultra = new EV3UltrasonicSensor(SensorPort.S2);
 	 
+	 static final int VA1 = 800;
+	 static final int VA2 = 1500;
+	 static final int VA3 = 25000;
+	 
+	 static final int V1 = 200;
+	 static final int V2 = 400;
+	 static final int V3 = 600;
+	 
 	 public Agent() {
 		 pilot.setAngularSpeed(1000);
 		 pince.setSpeed(1000);
 		 
 	 }
 	 
-	 public void fermeturePince(boolean state) {
+	 public void fermeturePince(Boolean state) {
 		 if (state) {
 			 pince.rotate(-2000);
 		 }
@@ -41,29 +49,58 @@ public class Agent {
 	 public void avanceDistance(int distance) {
 		 pilot.travel(distance);
 	 }
-	 public void avance() {
-		 pilot.forward();
-	 }
-	 public void rotate(int angle) {
+	 
+	 
+	 public void rotate1(int angle) {
+		pilot.setAngularSpeed(VA1);
 		pilot.rotate(angle);
 	 }
 	 
-	 public float Distance() {
+	 public void rotate2(int angle) {
+		 pilot.setAngularSpeed(VA2);
+		pilot.rotate(angle);
+	 }
+	 
+	 public void rotate3(int angle) {
+		pilot.setAngularSpeed(VA3);
+		pilot.rotate(angle);
+	 }
+	 
+	 public void avance1() {
+		 pilot.setLinearSpeed(V1);
+		 pilot.forward();
+	 }
+	 
+	 public void avance2() {
+		 pilot.setLinearSpeed(V2);
+		 pilot.forward();
+	 }
+	 
+	 public void avance3() {
+		 pilot.setLinearSpeed(V3);
+		 pilot.forward();
+	 }
+	 
+	 public float getDistance() {
 		 SampleProvider d= ultra.getMode("Distance"); 
 		 float[] sample = new float[d.sampleSize()];
 		 d.fetchSample(sample, 0);
 		 return sample[0];
 	 }
-		public boolean Touche() {
-			return uTouch.isPressed();
-		}
-		
+
+	 
+	public boolean getTouche() {
+		return uTouch.isPressed();
+	}
+	
+	
 	public static void main(String[] args) {
 		Agent cedric = new Agent();
-		while (true) {
-			System.out.println(cedric.Distance());
-			Delay.msDelay(5000);
-			}
+		cedric.avance3();
+		
+		while (true) {			
+		}
+
 	}
 		
 

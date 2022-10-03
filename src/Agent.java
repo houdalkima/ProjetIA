@@ -27,7 +27,7 @@ public class Agent {
 		 
 	 }
 	 
-	 public void fermeturePince(Boolean state) {
+	 public void fermeturePince(boolean state) {
 		 if (state) {
 			 pince.rotate(-2000);
 		 }

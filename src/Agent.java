@@ -1,3 +1,4 @@
+package src;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
@@ -11,15 +12,8 @@ import lejos.robotics.navigation.MovePilot;
 import lejos.utility.Delay;
 
 public class Agent {
-	 private EV3MediumRegulatedMotor pince = new EV3MediumRegulatedMotor(MotorPort.B);
-	 private EV3LargeRegulatedMotor moteurDroit = new EV3LargeRegulatedMotor(MotorPort.A);
-	 private EV3LargeRegulatedMotor moteurGauche = new EV3LargeRegulatedMotor(MotorPort.C);
-	 private Wheel wheel1 = WheeledChassis.modelWheel(moteurDroit, 56).offset(-58);
-	 private Wheel wheel2 = WheeledChassis.modelWheel(moteurGauche, 56).offset(58);
-	 private Chassis chassis = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, WheeledChassis.TYPE_DIFFERENTIAL);
-	 private MovePilot pilot = new MovePilot(chassis);
-	 private TouchSensor uTouch = new TouchSensor(SensorPort.S1);
-	 private EV3UltrasonicSensor ultra = new EV3UltrasonicSensor(SensorPort.S2);
+	 private int Wheeldiameter = 56;
+	 private int Entreaxe = 49;
 	 
 	 static final int VA1 = 800;
 	 static final int VA2 = 1500;
@@ -29,57 +23,54 @@ public class Agent {
 	 static final int V2 = 400;
 	 static final int V3 = 600;
 	 
+	 private EV3MediumRegulatedMotor pince;
+	 private EV3LargeRegulatedMotor moteurDroit;
+	 private EV3LargeRegulatedMotor moteurGauche;
+	 private Wheel wheel1;
+	 private Wheel wheel2;
+	 private Chassis chassis;
+	 private MovePilot pilot;
+	 private TouchSensor uTouch;
+	 private EV3UltrasonicSensor ultra;
+	
+	 
+	 
 	 public Agent() {
-		 pilot.setAngularSpeed(1000);
-		 pince.setSpeed(1000);
+		 pince = new EV3MediumRegulatedMotor(MotorPort.B);
+		 moteurDroit = new EV3LargeRegulatedMotor(MotorPort.A);
+		 moteurGauche  = new EV3LargeRegulatedMotor(MotorPort.C);
+		 wheel1  = WheeledChassis.modelWheel(moteurDroit, 56).offset(Entreaxe);
+		 wheel2 = WheeledChassis.modelWheel(moteurGauche, 56).offset(-Entreaxe);
+		 chassis  = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, WheeledChassis.TYPE_DIFFERENTIAL);
+		 pilot  = new MovePilot(chassis);
+		 uTouch  = new TouchSensor(SensorPort.S1);
+		 ultra  = new EV3UltrasonicSensor(SensorPort.S2);
 		 
 	 }
 	 
 	 public void fermeturePince(Boolean state) {
 		 if (state) {
 			 pince.rotate(-2000);
+		 }else {
+			 pince.rotate(2000);
 		 }
-		 pince.rotate(2000);
 	 }
 	 
 	 public void ouverturePince() {
 		 fermeturePince(false);
 	 }
 	 
-	 public void avanceDistance(int distance) {
-		 pilot.travel(distance);
+	 public void avanceDistance(int distance, boolean async) {
+		 pilot.travel(distance,async);
 	 }
 	 
 	 
-	 public void rotate1(int angle) {
-		pilot.setAngularSpeed(VA1);
+	 public void rotateSC(int angle, int v) {
+		pilot.setAngularSpeed(v);
 		pilot.rotate(angle);
 	 }
 	 
-	 public void rotate2(int angle) {
-		 pilot.setAngularSpeed(VA2);
-		pilot.rotate(angle);
-	 }
 	 
-	 public void rotate3(int angle) {
-		pilot.setAngularSpeed(VA3);
-		pilot.rotate(angle);
-	 }
-	 
-	 public void avance1() {
-		 pilot.setLinearSpeed(V1);
-		 pilot.forward();
-	 }
-	 
-	 public void avance2() {
-		 pilot.setLinearSpeed(V2);
-		 pilot.forward();
-	 }
-	 
-	 public void avance3() {
-		 pilot.setLinearSpeed(V3);
-		 pilot.forward();
-	 }
 	 
 	 public float getDistance() {
 		 SampleProvider d= ultra.getMode("Distance"); 
@@ -92,18 +83,6 @@ public class Agent {
 	public boolean getTouche() {
 		return uTouch.isPressed();
 	}
-	
-	
-	public static void main(String[] args) {
-		Agent cedric = new Agent();
-		cedric.avance3();
-		
-		while (true) {			
-		}
-
-	}
-		
-
 }
 
 

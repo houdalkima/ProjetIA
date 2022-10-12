@@ -5,17 +5,31 @@ import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import lejos.robotics.filter.MeanFilter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class Capteur {
 	 private TouchSensor uTouch;
 	 private EV3UltrasonicSensor ultra;
 	 private EV3ColorSensor colorSensor;
+	 private final int portCam = 8888;
 	 
 	 
 	 public Capteur() {
-		 uTouch  = new TouchSensor(SensorPort.S1);
-		 ultra  = new EV3UltrasonicSensor(SensorPort.S2);
-		 colorSensor = new EV3ColorSensor(SensorPort.S3);
+		 try {
+			 uTouch  = new TouchSensor(SensorPort.S1);
+			 ultra  = new EV3UltrasonicSensor(SensorPort.S2);
+			 colorSensor = new EV3ColorSensor(SensorPort.S3);
+			 InetAddress serveur = InetAddress.getByName("192.168.1.255");
+	         DatagramSocket dsocket = new DatagramSocket(portCam);
+	         byte[] buffer = new byte[2048];
+	         DatagramPacket packet = new DatagramPacket(buffer, buffer.length,serveur,portCam);
+
+		 }
+		 catch (Exception e){
+			 
+		 }
 	 }
 	 
 	 public float getDistance() {
@@ -37,4 +51,6 @@ public class Capteur {
         average.fetchSample(color, 0);        
 		return new float[] {color[0],color[1],color[2]};
 	}
+	
+	
 }

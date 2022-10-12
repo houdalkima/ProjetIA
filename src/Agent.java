@@ -84,5 +84,3 @@ public class Agent {
 		return uTouch.isPressed();
 	}
 }
-
-

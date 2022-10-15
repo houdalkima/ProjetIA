@@ -1,10 +1,6 @@
-package src;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
-import lejos.hardware.port.SensorPort;
-import lejos.hardware.sensor.EV3UltrasonicSensor;
-import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
 import lejos.robotics.chassis.WheeledChassis;
@@ -42,7 +38,7 @@ public class Actionneur {
 		 pilot  = new MovePilot(chassis);
 	 }
 	 
-	 public void fermeturePince(boolean state) {
+	 public void fermeturePince(Boolean state) {
 		 if (state) {
 			 pince.rotate(-2000);
 		 }else {
@@ -59,8 +55,8 @@ public class Actionneur {
 	 }
 	 
 	 
-	 public void rotateSC(int angle, int v) {
+	 public void rotateSC(int angle, int v,boolean async) {
 		pilot.setAngularSpeed(v);
-		pilot.rotate(angle);
+		pilot.rotate(angle,async);
 	 }
 }

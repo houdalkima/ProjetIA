@@ -13,7 +13,7 @@ import lejos.utility.Delay;
 
 public class Agent {
 	 private final int Wheeldiameter = 56;
-	 private int Entreaxe = 49;
+	 private final int Entreaxe = 49;
 	 
 	 static final int VA1 = 200;
 	 static final int VA2 = 400;

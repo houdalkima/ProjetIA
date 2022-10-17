@@ -40,7 +40,9 @@ public class Capteur {
 
 	 
 	public boolean getTouche() {
-		return uTouch.isPressed();
+		float[] sample = new float[1];
+        	fetchSample(sample, 0);
+		return sample[0] != 0;
 	}
 	
 	public float[] getColor() {

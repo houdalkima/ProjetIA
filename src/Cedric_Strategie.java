@@ -66,7 +66,7 @@ public class Cedric_Strategie {
 		 * RECUPERE
 		 */
 		Agent a= new Agent();
-		a.rotate1(180);
+		a.rotateSC(180,200);
 		//Move m = new Move(true, 180f, 180f);
 		float[] t=new float[180];
 		/*while(m.isMoving()) {

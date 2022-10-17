@@ -15,9 +15,9 @@ public class Agent {
 	 private int Wheeldiameter = 56;
 	 private int Entreaxe = 49;
 	 
-	 static final int VA1 = 800;
-	 static final int VA2 = 1500;
-	 static final int VA3 = 25000;
+	 static final int VA1 = 200;
+	 static final int VA2 = 400;
+	 static final int VA3 = 600;
 	 
 	 static final int V1 = 200;
 	 static final int V2 = 400;

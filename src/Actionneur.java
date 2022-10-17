@@ -8,16 +8,18 @@ import lejos.robotics.navigation.MovePilot;
 import lejos.utility.Delay;
 
 public class Actionneur {
-	 private int Wheeldiameter = 56;
-	 private int Entreaxe = 49;
+	 private static final int Wheeldiameter = 56;
+	 private static final int Entreaxe = 49;
 	 
-	 static final int VA1 = 800;
-	 static final int VA2 = 1500;
-	 static final int VA3 = 25000;
+	 private static final int VA1 = 800;
+	 private static final int VA2 = 1500;
+	 private static final int VA3 = 25000;
 	 
-	 static final int V1 = 200;
-	 static final int V2 = 400;
-	 static final int V3 = 600;
+	 private static final int V1 = 200;
+	 private static final int V2 = 400;
+	 private static final int V3 = 600;
+	 
+	 private static final int OuverturePince = 2000;
 	 
 	 private EV3MediumRegulatedMotor pince;
 	 private EV3LargeRegulatedMotor moteurDroit;
@@ -29,20 +31,20 @@ public class Actionneur {
 	 
 	 
 	 public Actionneur() {
-		 pince = new EV3MediumRegulatedMotor(MotorPort.B);
-		 moteurDroit = new EV3LargeRegulatedMotor(MotorPort.A);
-		 moteurGauche  = new EV3LargeRegulatedMotor(MotorPort.C);
-		 wheel1  = WheeledChassis.modelWheel(moteurDroit, 56).offset(Entreaxe);
-		 wheel2 = WheeledChassis.modelWheel(moteurGauche, 56).offset(-Entreaxe);
-		 chassis  = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, WheeledChassis.TYPE_DIFFERENTIAL);
-		 pilot  = new MovePilot(chassis);
+		 this.pince = new EV3MediumRegulatedMotor(MotorPort.B);
+		 this.moteurDroit = new EV3LargeRegulatedMotor(MotorPort.A);
+		 this.moteurGauche  = new EV3LargeRegulatedMotor(MotorPort.C);
+		 this.wheel1  = WheeledChassis.modelWheel(moteurDroit, Wheeldiameter).offset(Entreaxe);
+		 this.wheel2 = WheeledChassis.modelWheel(moteurGauche, Wheeldiameter).offset(-Entreaxe);
+		 this.chassis  = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, WheeledChassis.TYPE_DIFFERENTIAL);
+		 this.pilot  = new MovePilot(chassis);
 	 }
 	 
 	 public void fermeturePince(Boolean state) {
 		 if (state) {
-			 pince.rotate(-2000);
+			 pince.rotate(-OuverturePince);
 		 }else {
-			 pince.rotate(2000);
+			 pince.rotate(OuverturePince);
 		 }
 	 }
 	 

@@ -8,6 +8,8 @@ import lejos.robotics.filter.MeanFilter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 public class Capteur {
 	 private TouchSensor uTouch;
@@ -16,20 +18,16 @@ public class Capteur {
 	 private final int portCam = 8888;
 	 
 	 
-	 public Capteur() {
-		 try {
-			 uTouch  = new TouchSensor(SensorPort.S1);
-			 ultra  = new EV3UltrasonicSensor(SensorPort.S2);
-			 colorSensor = new EV3ColorSensor(SensorPort.S3);
-			 InetAddress serveur = InetAddress.getByName("192.168.1.255");
-	         DatagramSocket dsocket = new DatagramSocket(portCam);
-	         byte[] buffer = new byte[2048];
-	         DatagramPacket packet = new DatagramPacket(buffer, buffer.length,serveur,portCam);
+	 public Capteur() throws SocketException, UnknownHostException {
+		 super();
+		 uTouch  = new TouchSensor(SensorPort.S1);
+		 ultra  = new EV3UltrasonicSensor(SensorPort.S2);
+		 colorSensor = new EV3ColorSensor(SensorPort.S3);
+		 InetAddress serveur = InetAddress.getByName("192.168.1.255");
+		 DatagramSocket dsocket = new DatagramSocket(portCam);
+		 byte[] buffer = new byte[2048];
+		 DatagramPacket packet = new DatagramPacket(buffer, buffer.length,serveur,portCam);
 
-		 }
-		 catch (Exception e){
-			 
-		 }
 	 }
 	 
 	 public float getDistance() {

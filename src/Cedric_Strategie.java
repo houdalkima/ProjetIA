@@ -45,7 +45,7 @@ public class Cedric_Strategie {
 	}
     private float isPaletProche(float[] tableDistances) {
     	/* repere un palet dans le tableau :
-    	 * la distance est réduite sur une largeur de qlq cm
+    	 * la distance est rÃ©duite sur une largeur de qlq cm
     	 * et conserve le plus proche
     	 * renvoi un angle (potentiellement la boussole)
     	 */
@@ -53,7 +53,7 @@ public class Cedric_Strategie {
 	private void goToPalet() {
 		// TODO Auto-generated method stub
 		/* 
-		 * aller à la distance la plus petite jusqu'à touch
+		 * aller Ã  la distance la plus petite jusqu'Ã  touch
 		 * si la distance ne diminue pas : recalcul
 		 * entre distance depart et 18cm verifier que distance diminue 
 		 * si distance diminue plus avant 18cm minirecherhce()
@@ -65,7 +65,15 @@ public class Cedric_Strategie {
 		 * recuperer les distances des palet autour
 		 * RECUPERE
 		 */
-		 return isPaletProche();
+		Agent a= new Agent();
+		a.rotate1(180);
+		//Move m = new Move(true, 180f, 180f);
+		float[] t=new float[180];
+		/*while(m.isMoving()) {
+			t=a.getTabDistance();
+		}
+		System.out.print(t);*/
+		return t;
 	}
 	private float[] miniRecherche() {
 		// TODO Auto-generated method stub
@@ -78,7 +86,7 @@ public class Cedric_Strategie {
 	private static void depart() {
 		// TODO Auto-generated method stub
 		/* foloow line 
-		 * se décaler 
+		 * se dÃ©caler 
 		 * goToCamp();
 		 */
 	}

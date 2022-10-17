@@ -41,7 +41,7 @@ public class Capteur {
 	 
 	public boolean getTouche() {
 		float[] sample = new float[1];
-        	fetchSample(sample, 0);
+        	uTouch.fetchSample(sample, 0);
 		return sample[0] != 0;
 	}
 	

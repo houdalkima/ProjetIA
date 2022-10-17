@@ -8,6 +8,9 @@ import lejos.robotics.navigation.MovePilot;
 import lejos.utility.Delay;
 
 public class Actionneur {
+	
+	 private int Compass = 0;
+	
 	 private static final int Wheeldiameter = 56;
 	 private static final int Entreaxe = 49;
 	 
@@ -40,6 +43,11 @@ public class Actionneur {
 		 this.pilot  = new MovePilot(chassis);
 	 }
 	 
+	 public int getCompass() {
+		 return this.Compass;
+	 }
+	 
+	 
 	 public void fermeturePince(Boolean state) {
 		 if (state) {
 			 pince.rotate(-OuverturePince);
@@ -58,7 +66,8 @@ public class Actionneur {
 	 
 	 
 	 public void rotateSC(int angle, int v,boolean async) {
-		pilot.setAngularSpeed(v);
-		pilot.rotate(angle,async);
+		 this.Compass = (this.getCompass()+angle)%360;
+		 pilot.setAngularSpeed(v);
+		 pilot.rotate(angle,async);
 	 }
 }

@@ -1,6 +1,7 @@
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
+import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
@@ -12,7 +13,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class Capteur {
-	 private TouchSensor uTouch;
+	 private EV3TouchSensor uTouch;
 	 private EV3UltrasonicSensor ultra;
 	 private EV3ColorSensor colorSensor;
 	 private final int portCam = 8888;
@@ -20,7 +21,7 @@ public class Capteur {
 	 
 	 public Capteur() throws SocketException, UnknownHostException {
 		 super();
-		 uTouch  = new TouchSensor(SensorPort.S1);
+		 uTouch  = new EV3TouchSensor(SensorPort.S1);
 		 ultra  = new EV3UltrasonicSensor(SensorPort.S2);
 		 colorSensor = new EV3ColorSensor(SensorPort.S3);
 		 InetAddress serveur = InetAddress.getByName("192.168.1.255");

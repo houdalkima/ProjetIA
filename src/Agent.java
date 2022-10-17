@@ -12,12 +12,12 @@ import lejos.robotics.navigation.MovePilot;
 import lejos.utility.Delay;
 
 public class Agent {
-	 private int Wheeldiameter = 56;
-	 private int Entreaxe = 49;
+	 private final int Wheeldiameter = 56;
+	 private final int Entreaxe = 49;
 	 
-	 static final int VA1 = 800;
-	 static final int VA2 = 1500;
-	 static final int VA3 = 25000;
+	 static final int VA1 = 200;
+	 static final int VA2 = 400;
+	 static final int VA3 = 600;
 	 
 	 static final int V1 = 200;
 	 static final int V2 = 400;
@@ -39,8 +39,8 @@ public class Agent {
 		 pince = new EV3MediumRegulatedMotor(MotorPort.B);
 		 moteurDroit = new EV3LargeRegulatedMotor(MotorPort.A);
 		 moteurGauche  = new EV3LargeRegulatedMotor(MotorPort.C);
-		 wheel1  = WheeledChassis.modelWheel(moteurDroit, 56).offset(Entreaxe);
-		 wheel2 = WheeledChassis.modelWheel(moteurGauche, 56).offset(-Entreaxe);
+		 wheel1  = WheeledChassis.modelWheel(moteurDroit, Wheeldiameter).offset(Entreaxe);
+		 wheel2 = WheeledChassis.modelWheel(moteurGauche, Wheeldiameter).offset(-Entreaxe);
 		 chassis  = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, WheeledChassis.TYPE_DIFFERENTIAL);
 		 pilot  = new MovePilot(chassis);
 		 uTouch  = new TouchSensor(SensorPort.S1);

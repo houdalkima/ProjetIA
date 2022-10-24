@@ -43,11 +43,20 @@ public class Cedric_Strategie {
 		}
 		
 	}
+    
+    
     private float isPaletProche(float[] tableDistances) {
     	/* repere un palet dans le tableau :
+    	 * 
+    	 * 
+    	 * 
+    	 * 
+    	 * 
     	 * la distance est réduite sur une largeur de qlq cm
     	 * et conserve le plus proche
     	 * renvoi un angle (potentiellement la boussole)
+    	 * 
+    	 * 
     	 */
     }
 	private void goToPalet() {

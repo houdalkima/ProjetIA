@@ -4,7 +4,8 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
 public class Cedric_Strategie {
 	private String etat;
-	
+	private final static int LONGUEURTABLE = 300;
+	private final static int SMALL_ROT = 5;
 	
 	public Cedric_Strategie() {
 		etat="DEPART";

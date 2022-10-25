@@ -94,13 +94,14 @@ public class Cedric_Strategie {
 	}
 	private static void depart() {
 		// TODO Auto-generated method stub
-		/* foloow line 
-		 * se décaler 
-		 * goToCamp();
-		 */
+		Controller controller = new Controller(SensorPort.S3, MotorPort.B, MotorPort.C);
+		controller.run();
+		act.rotateSC(SMALL_ROT, 200, false);
+		act.avanceDistance(10, false);
+		goToCamp();
 	}
 
-	private void goToCamp() {
+	private static void goToCamp() {
 		// TODO Auto-generated method stub
 		act.rotateSC(act.getCompass(),200,false);
 		act.avanceDistance(LONGUEURTABLE*10,false);

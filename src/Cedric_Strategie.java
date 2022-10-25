@@ -6,12 +6,16 @@ public class Cedric_Strategie {
 	private String etat;
 	private final static int LONGUEURTABLE = 300;
 	private final static int SMALL_ROT = 5;
+	static Actionneur act=new Actionneur();
+	static Capteur capt=new Capteur(false);
 	
 	public Cedric_Strategie() {
-		etat="DEPART";
+		this("DEPART");
 	}
 	public Cedric_Strategie(String e) {
 		etat=e;
+		act=new Actionneur();
+		capt=new Capteur(false);
 	}
 	
 	

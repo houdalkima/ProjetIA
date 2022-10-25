@@ -68,7 +68,17 @@ public class Capteur {
 		return new float[] {color[0],color[1],color[2]};
 	}
 	
-	
+	public boolean isWhite(float[] color) {
+		if(color[0]<280 && color[0]>240) {
+			if (color[1]<280 && color[1]>240) {
+				if (color[2]<280 && color[2]>240) {
+					return true;
+				}
+			
+			}
+		}
+		return false;
+	}
 	
 	
 }

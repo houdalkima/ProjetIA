@@ -100,13 +100,18 @@ public class Cedric_Strategie {
 		 */
 	}
 
-	private static void goToCamp() {
+	private void goToCamp() {
 		// TODO Auto-generated method stub
-		/* aller au nord 
-		 * tant que pas de ligne blanche franchit avancer
-		 * quand franchi deposer 
-		 */
+		act.rotateSC(act.getCompass(),200,false);
+		act.avanceDistance(LONGUEURTABLE*10,false);
+		if (capt.isWhite(capt.getColor())) {
+			act.stop();
+			act.ouverturePince();
+			act.avanceDistance(-20,true);
+			act.rotateSC(act.getCompass()+180,200,false);
+		}		
 	}
+	
 	public static void main(String[] args) {
 	}
 }

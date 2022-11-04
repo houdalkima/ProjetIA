@@ -4,13 +4,18 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
 public class Cedric_Strategie {
 	private String etat;
-	
+	private final static int LONGUEURTABLE = 300;
+	private final static int SMALL_ROT = 5;
+	static Actionneur act=new Actionneur();
+	static Capteur capt=new Capteur(false);
 	
 	public Cedric_Strategie() {
-		etat="DEPART";
+		this("DEPART");
 	}
 	public Cedric_Strategie(String e) {
 		etat=e;
+		act=new Actionneur();
+		capt=new Capteur(false);
 	}
 	
 	
@@ -43,11 +48,20 @@ public class Cedric_Strategie {
 		}
 		
 	}
+    
+    
     private float isPaletProche(float[] tableDistances) {
     	/* repere un palet dans le tableau :
+    	 * 
+    	 * 
+    	 * 
+    	 * 
+    	 * 
     	 * la distance est réduite sur une largeur de qlq cm
     	 * et conserve le plus proche
     	 * renvoi un angle (potentiellement la boussole)
+    	 * 
+    	 * 
     	 */
     }
 	private void goToPalet() {
@@ -85,19 +99,25 @@ public class Cedric_Strategie {
 	}
 	private static void depart() {
 		// TODO Auto-generated method stub
-		/* foloow line 
-		 * se décaler 
-		 * goToCamp();
-		 */
+		Controller controller = new Controller(SensorPort.S3, MotorPort.B, MotorPort.C);
+		controller.run();
+		act.rotateSC(SMALL_ROT, 200, false);
+		act.avanceDistance(10, false);
+		goToCamp();
 	}
 
 	private static void goToCamp() {
 		// TODO Auto-generated method stub
-		/* aller au nord 
-		 * tant que pas de ligne blanche franchit avancer
-		 * quand franchi deposer 
-		 */
+		act.rotateSC(act.getCompass(),200,false);
+		act.avanceDistance(LONGUEURTABLE*10,false);
+		if (capt.isWhite(capt.getColor())) {
+			act.stop();
+			act.ouverturePince();
+			act.avanceDistance(-20,true);
+			act.rotateSC(act.getCompass()+180,200,false);
+		}		
 	}
+	
 	public static void main(String[] args) {
 	}
 }

@@ -47,6 +47,24 @@ public class Actionneur {
 		 return this.Compass;
 	 }
 	 
+	 public void resetCompass() {
+		 this.Compass = 0;
+	 }
+	 
+	 public void returnAxe(Actionneur a,int v) {
+			int Compass = getCompass();
+			if (-180 < Compass & Compass < 180) {
+				a.rotateSC(-Compass, v, false);
+			}
+			else {
+				if (Compass <= -180) {
+					a.rotateSC(-(360+Compass), v, false);
+				}
+				else {
+					a.rotateSC(360-Compass, v, false);
+				}
+			}
+	 }
 	 
 	 public void fermeturePince(Boolean state) {
 		 if (state) {

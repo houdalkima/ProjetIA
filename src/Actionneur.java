@@ -55,13 +55,16 @@ public class Actionneur {
 			int Compass = getCompass();
 			if (-180 < Compass & Compass < 180) {
 				a.rotateSC(-Compass, v, false);
+				resetCompass();
 			}
 			else {
 				if (Compass <= -180) {
 					a.rotateSC(-(360+Compass), v, false);
+					resetCompass();
 				}
 				else {
 					a.rotateSC(360-Compass, v, false);
+					resetCompass();
 				}
 			}
 	 }
@@ -87,5 +90,16 @@ public class Actionneur {
 		 this.Compass = (this.getCompass()+angle)%360;
 		 pilot.setAngularSpeed(v);
 		 pilot.rotate(angle,async);
+	 }
+	 public float[] getCoords(Capteur c, Actionneur a,int v) {
+		 float[] coords = new float[2];
+		 float[] measure = new float[4];
+		 a.returnAxe(a,v);
+		 measure[0] = c.getDistance();
+		 for (int j =1 ; j<4;j++) {
+			 a.rotateSC(90, v, false);
+			 measure[j] = c.getDistance();
+		 }
+		 return coords;
 	 }
 }

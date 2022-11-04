@@ -91,7 +91,7 @@ public class TestCalibration {
 		System.out.println("Test Bleu");
 		Button.ENTER.waitForPressAndRelease();
 		Color = c.getColor();
-		if (!errorrange(White[0],Color[0],error) || !errorrange(White[1],Color[1],error) || !errorrange(White[2],Color[2],error)) {
+		if (!errorrange(Blue[0],Color[0],error) || !errorrange(Blue[1],Color[1],error) || !errorrange(Blue[2],Color[2],error)) {
 			return false;
 		}
 		System.out.println("Test Jaune");
@@ -115,7 +115,7 @@ public class TestCalibration {
 		System.out.println("Test Noir");
 		Button.ENTER.waitForPressAndRelease();
 		Color = c.getColor();
-		if (!errorrange(White[0],Color[0],error) || !errorrange(White[1],Color[1],error) || !errorrange(White[2],Color[2],error)) {
+		if (!errorrange(Black[0],Color[0],error) || !errorrange(Black[1],Color[1],error) || !errorrange(Black[2],Color[2],error)) {
 			return false;
 		}
 		return true;

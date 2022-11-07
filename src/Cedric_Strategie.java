@@ -117,7 +117,7 @@ public class Cedric_Strategie {
 
 	private static void goToCamp() {
 		/* Le robot dépose le palet dans le camp adverse. */
-		returnAxe(actionneur,V2);
+		actionneur.returnAxe(actionneur,V2);
 		actionneur.avance();
 		while(capteur.isWhite(getColor())){ 
 			actionneur.avance();
@@ -126,6 +126,7 @@ public class Cedric_Strategie {
 		actionneur.ouverturePinces();
 		actionneur.avancerDistance(- 200, true); 
 		actionneur.fermeturePinces();
+		etat =  "VIDE";
 
 	} 
 

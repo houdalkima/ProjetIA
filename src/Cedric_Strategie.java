@@ -85,10 +85,8 @@ public class Cedric_Strategie {
 
 	private float isPaletProche(float[] tableDistances) {
 		return 0;
-		/* Repère un palet dans le tableau :
-		 * la distance est réduite sur une largeur de quelques cm
-		 * et conserve la plus proche
-		 * Retourne un angle (potentiellement la boussole) */
+		/* La méthode permet de definir le palet le plus proche
+		 * Apartir de la camera on */
 	}
 	private void goToPalet() {
 		/* Le robot va à la distance la plus petite jusqu'à toucher un palat

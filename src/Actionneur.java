@@ -21,8 +21,6 @@ public class Actionneur {
 	 
 	 /* L'attribut de classe VA1 contient la vitesse angulaire. */
 	 private static final int VA1 = 800;
-	 private static final int VA2 = 1500;
-	 private static final int VA3 = 25000;
 	 
 	 /* Les attributs de classe V1, V2 et V3 contiennent les vitesses linéaires. */
 	 private static final int V1 = 200;

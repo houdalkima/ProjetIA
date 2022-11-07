@@ -1,6 +1,8 @@
 package src;
-
 import java.lang.ModuleLayer.Controller;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
@@ -35,7 +37,15 @@ public class Cedric_Strategie {
 		/* Initialisation de l'état à "e", des actionneurs et des capteurs du robot. */
 		etat = e;
 		actionneur = new Actionneur();
-		capt = new Capteur(false);
+		try {
+			capt = new Capteur(false);
+		} catch (SocketException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 
@@ -74,6 +84,7 @@ public class Cedric_Strategie {
 
 
 	private float isPaletProche(float[] tableDistances) {
+		return 0;
 		/* Repère un palet dans le tableau :
 		 * la distance est réduite sur une largeur de quelques cm
 		 * et conserve la plus proche
@@ -104,15 +115,17 @@ public class Cedric_Strategie {
 		 * L’état est mis à jour en “RECUPERE”. */
 		return isPaletProche();
 	}
-	private static void depart() {
-		/* Le robot recherche un palet et l’atteint en partant de son camp.
-		 * Cette méthode est enclenchée dès le début de la compétition. */
-		Controller controller = new Controller(SensorPort.S3, MotorPort.B, MotorPort.C);
-		controller.run();
-		actionneur.rotateSC(SMALL_ROT, 200, false);
-		actionneur.avanceDistance(10, false);
-		goToCamp();
-	}
+	
+	
+//	private static void depart() {
+//		/* Le robot recherche un palet et l’atteint en partant de son camp.
+//		 * Cette méthode est enclenchée dès le début de la compétition. */
+//		Controller controller = new Controller(SensorPort.S3, MotorPort.B, MotorPort.C);
+//		controller.run();
+//		actionneur.rotateSC(SMALL_ROT, 200, false);
+//		actionneur.avanceDistance(10, false);
+//		goToCamp();
+//	}
 
 
 	private static void goToCamp() {

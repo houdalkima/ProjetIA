@@ -27,7 +27,7 @@ public class Capteur {
 	 private int[] coordonneesAdversaire;
 	 private ArrayList<int[]> positionsPalets;
 	 
-	 /* L'attribut de classe portCam contient le port de la caméra. */
+	 /* La constante portCam contient le port de la caméra. */
 	 private static final int portCam = 8888;
 	 
 	 public Capteur (boolean camera) throws SocketException, UnknownHostException {

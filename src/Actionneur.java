@@ -14,20 +14,20 @@ public class Actionneur {
 	/* L'attribut d'instance Compass contient l'orientation en degré du robot. */
 	 private int Compass;
 	
-	 /* L'attribut de classe Wheeldiameter contient le diamètre des roues du robot.
-	  * L'attribut de classe Entreaxe contient la distance entre le centre du moteur du robot et les roues. */
+	 /* La constante Wheeldiameter contient le diamètre des roues du robot.
+	  * La constante Entreaxe contient la distance entre le centre du moteur du robot et les roues. */
 	 private static final int Wheeldiameter = 56;
 	 private static final int Entreaxe = 49;
 	 
-	 /* L'attribut de classe VA1 contient la vitesse angulaire. */
+	 /* La constante VA1 contient la vitesse angulaire. */
 	 private static final int VA1 = 800;
 	 
-	 /* Les attributs de classe V1, V2 et V3 contiennent les vitesses linéaires. */
+	 /* Les constantes V1, V2 et V3 contiennent les vitesses linéaires. */
 	 private static final int V1 = 200;
 	 private static final int V2 = 400;
 	 private static final int V3 = 600;
 	 
-	 /* L'attribut de classe OuverturePince contient l'angle d'ouverture des pinces du robot. */
+	 /* La constante OuverturePince contient l'angle d'ouverture des pinces du robot. */
 	 private static final int OuverturePince = 2000;
 	 
 	 /* Déclaration des actionneurs. */

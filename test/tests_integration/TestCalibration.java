@@ -12,11 +12,11 @@ public class TestCalibration {
 	private static float[] Green = new float[] {0.0568f,0.1275f,0.04118f};
 	private static float[] Black = new float[] {0.0353f,0.0480f,0.0206f};
 	
-	public static boolean errorrange(float borne, float value, float e) {
+	public static boolean errorrange(float reference, float mesure, float e) {
 		if (e<0 || e>1) {
 			throw new IllegalArgumentException("Donner une valeur entre 0 et 1");
 		}
-		return (e*borne <= value && e/borne >= value);
+		return (reference-(reference*e) <= mesure && reference+(reference*e)  >= mesure);
 	}
 	
 	public static int genererInt(int borneInf, int borneSup){
@@ -88,6 +88,11 @@ public class TestCalibration {
 		if (!errorrange(White[0],Color[0],error) || !errorrange(White[1],Color[1],error) || !errorrange(White[2],Color[2],error)) {
 			return false;
 		}
+		TestCalibration.White[0]=Color[0];
+		TestCalibration.White[1]=Color[1];
+		TestCalibration.White[2]=Color[2];
+		System.out.println("Blanc mis à jour");
+		
 		System.out.println("Test Bleu");
 		Button.ENTER.waitForPressAndRelease();
 		Color = c.getColor();

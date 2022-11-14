@@ -38,6 +38,7 @@ public class Actionneur {
 	 private final Wheel wheel2;
 	 private final Chassis chassis;
 	 private final MovePilot pilot;
+	 private boolean pinceOuverte=false;
 	 
 	 public Actionneur(){
 		 /* Initialise la boussole et les actionneurs. */
@@ -49,6 +50,7 @@ public class Actionneur {
 		 wheel2 = WheeledChassis.modelWheel(moteurGauche, Wheeldiameter).offset(-Entreaxe);
 		 chassis  = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, WheeledChassis.TYPE_DIFFERENTIAL);
 		 pilot  = new MovePilot(chassis);
+		 
 	 }
 	 
 	 public int getCompass() {
@@ -80,25 +82,40 @@ public class Actionneur {
 				}
 			}
 	 }
-	 
+	 public boolean getOuverturePince() {
+		 return pinceOuverte;
+	 }
+	 public void setOuverturePince() {
+		 pinceOuverte=!(pinceOuverte);
+	 }
 	 public void fermeturePince(boolean state) {
 		 /* Ferme les pinces du robot. */
-		 if (state)
+		 if (state) {
 			 pince.rotate(-OuverturePince);
-		 else
-			 pince.rotate(OuverturePince);
+			 setOuverturePince();
+		 }
 	 }
 	 
-	 public void ouverturePince() {
+	 public void ouverturePince(boolean state) {
 		 /* Ouvre les pinces du robot. */
-		 fermeturePince(false);
+		 if (state==false) {
+			 pince.rotate(OuverturePince);
+			 setOuverturePince();
+		 }
 	 }
 	 
 	 public void avanceDistance(int distance, boolean async) {
 		 /* Le robot avance en ligne droite pendant une distance "distance". */
 		 pilot.travel(distance,async);
 	 }
-	 
+	 public void avance() {
+		 /* Le robot avance en ligne droite*/
+		 pilot.forward();
+	 }
+	 public void stop() {
+		 /* Le robot s'arrete*/
+		 pilot.stop();
+	 }
 	 
 	 public void rotateSC(int angle, int v, boolean async) {
 		 /* Met à jour la valeur de la boussole. 
@@ -123,4 +140,3 @@ public class Actionneur {
 	 }
 
 }
-

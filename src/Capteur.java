@@ -36,6 +36,7 @@ public class Capteur {
 		 uTouch  = new EV3TouchSensor(SensorPort.S1);
 		 ultra  = new EV3UltrasonicSensor(SensorPort.S2);
 		 colorSensor = new EV3ColorSensor(SensorPort.S3);
+		 colorSensor.setFloodlight(true);
 		 if(camera) {
 			 InetAddress serveur = InetAddress.getByName("192.168.1.255");
 			 DatagramSocket dsocket = new DatagramSocket(portCam);
@@ -55,16 +56,15 @@ public class Capteur {
 	public boolean getTouche() {
 		/* Méthode retournant true si le capteur de touché est activé. */
 		float[] sample = new float[1];
-        	uTouch.fetchSample(sample, 0);
+        		uTouch.fetchSample(sample, 0);
 		return sample[0] != 0;
 	}
 	
 	public float[] getColor() {
 		/* Méthode retournant les proportions RGB captées par le capteur de couleur. */
 		SampleProvider average = new MeanFilter(colorSensor.getRGBMode(), 1);
-        colorSensor.setFloodlight(Color.WHITE);
         float[] color = new float[average.sampleSize()];
-        average.fetchSample(color, 0);        
+        average.fetchSample(color, 0);  
 		return new float[] {color[0],color[1],color[2]};
 	}
 	

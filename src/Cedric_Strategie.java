@@ -33,7 +33,7 @@ public class Cedric_Strategie {
 		this("DEPART");
 	}
 
-	public Cedric_Strategie(String e) {
+	public Cedric_Strategie(String e) throws SocketException, UnknownHostException {
 		/* Initialisation de l'état à "e", des actionneurs et des capteurs du robot. */
 		etat = e;
 		actionneur = new Actionneur();
@@ -46,6 +46,9 @@ public class Cedric_Strategie {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		this.actionneur= new Actionneur();
+	   	 this.capteur= new Capteur(false);
+	   	 this.etat="";
 	}
 
 
@@ -129,17 +132,17 @@ public class Cedric_Strategie {
 	private static void goToCamp() {
 		/* Le robot dépose le palet dans le camp adverse. 
 		 * Met à jour l'état en "VIDE". */
-		actionneur.returnAxe(actionneur,V2);
-		actionneur.avance();
-		while(capteur.isWhite(getColor())){ 
+			
+			actionneur.returnAxe(actionneur,V2);
 			actionneur.avance();
-		}
-		actionneur.stop();
-		actionneur.ouverturePinces();
-		actionneur.avancerDistance(- 200, true); 
-		actionneur.fermeturePinces();
-		etat = "VIDE";
-
+			while(capteur.isWhite(capteur.getColor())){ 
+				actionneur.avance();
+			}
+			actionneur.stop();
+			actionneur.ouverturePince(actionneur.getOuverturePince());
+			actionneur.avanceDistance(- 200, true); 
+			actionneur.fermeturePince(actionneur.getOuverturePince());
+		
 	} 
 
 	public static void main(String[] args) {

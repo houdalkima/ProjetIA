@@ -1,16 +1,19 @@
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Random;
+import cedric.Actionneur;
+import cedric.Capteur;
 
 import lejos.hardware.Button;
 
 public class TestCalibration {
-	private static float[] White = new float[] {0.2755f ,0.2794f,0.2451f};
+	public static float[] White = new float[] {0.3029f ,0.3039f,0.2588f};
 	private static float[] Blue = new float[] {0.0235f,0.0441f,0.0696f};
 	private static float[] Yellow = new float[] {0.2392f,0.2167f,0.0510f};
 	private static float[] Red = new float[] {0.1441f,0.0441f,0.0216f};
 	private static float[] Green = new float[] {0.0568f,0.1275f,0.04118f};
 	private static float[] Black = new float[] {0.0353f,0.0480f,0.0206f};
+	public final static float COLORERROR=0.07f;
 	
 	public static boolean errorrange(float reference, float mesure, float e) {
 		if (e<0 || e>1) {
@@ -85,9 +88,10 @@ public class TestCalibration {
 		System.out.println("Test Blanc");
 		Button.ENTER.waitForPressAndRelease();
 		Color = c.getColor();
-		if (!errorrange(White[0],Color[0],error) || !errorrange(White[1],Color[1],error) || !errorrange(White[2],Color[2],error)) {
+		if (!errorrange(White[0],Color[0],COLORERROR) || !errorrange(White[1],Color[1],COLORERROR) || !errorrange(White[2],Color[2],COLORERROR)) {
 			return false;
 		}
+		// WARNING pas de modification faite pour les autres couleurs que blanc depuis longtemps
 		TestCalibration.White[0]=Color[0];
 		TestCalibration.White[1]=Color[1];
 		TestCalibration.White[2]=Color[2];
@@ -124,6 +128,15 @@ public class TestCalibration {
 			return false;
 		}
 		return true;
+	}
+	
+	public float[] calibrationCouleur(Capteur c,float[]couleur) {
+		TestColor(c);
+		couleur[0]=White[0];
+		couleur[1]=White[1];
+		couleur[2]=White[2];
+		System.out.println("Couleur mise à jour");
+		return couleur;
 	}
 	
 	public static boolean TestTouch(Capteur c) {

@@ -7,7 +7,7 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
-
+import test.TestCalibration;
 
 public class Cedric_Strategie {
 
@@ -23,6 +23,7 @@ public class Cedric_Strategie {
 	 * Initialisation d’une valeur d'angle pour une petite rotation */
 	private final static int LONGUEURTABLE = 300;
 	private final static int SMALL_ROT = 5;
+	private static float[] White;
 
 	/* Déclaration des actionneurs et des capteurs. */
 	private static Actionneur actionneur;
@@ -35,10 +36,10 @@ public class Cedric_Strategie {
 
 	public Cedric_Strategie(String e) throws SocketException, UnknownHostException {
 		/* Initialisation de l'état à "e", des actionneurs et des capteurs du robot. */
-		etat = e;
-		actionneur = new Actionneur();
+		this.etat = e;
+		this.actionneur = new Actionneur();
 		try {
-			capt = new Capteur(false);
+			this.capt = new Capteur(false);
 		} catch (SocketException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -46,9 +47,6 @@ public class Cedric_Strategie {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		this.actionneur= new Actionneur();
-	   	 this.capteur= new Capteur(false);
-	   	 this.etat="";
 	}
 
 
@@ -65,8 +63,8 @@ public class Cedric_Strategie {
 	public void strategie() {
 		/* Méthode contenant la stratégie utilisée par notre robot pour récupérer un maximum de palets. */ 
 		if(etat=="DEPART") {
-			depart();
-			etat="PLEIN";
+			recherche();
+			etat="RECUPERE";
 		}
 		else if (etat=="RECUPERE") {
 			goToPalet();
@@ -85,9 +83,15 @@ public class Cedric_Strategie {
 
 	}
 
+	public void homologation1() {
+		goToCamp();
+	}
+	public void homologation2() {
+		
+	}
 
 	private float isPaletProche(float[] tableDistances) {
-		return 0;
+		return 0f;
 		/* La méthode permet de definir le palet le plus proche
 		 * Apartir de la camera on */
 	}
@@ -114,11 +118,11 @@ public class Cedric_Strategie {
 		/* Le robot fait une recherche de 10 degré est 10 degré ouest.
 		 * Il retrouve le palet.
 		 * L’état est mis à jour en “RECUPERE”. */
-		return isPaletProche();
+		return isPaletProche(null);
 	}
 	
 	
-//	private static void depart() {
+//	/*private static void depart() {
 //		/* Le robot recherche un palet et l’atteint en partant de son camp.
 //		 * Cette méthode est enclenchée dès le début de la compétition. */
 //		Controller controller = new Controller(SensorPort.S3, MotorPort.B, MotorPort.C);
@@ -126,7 +130,7 @@ public class Cedric_Strategie {
 //		actionneur.rotateSC(SMALL_ROT, 200, false);
 //		actionneur.avanceDistance(10, false);
 //		goToCamp();
-//	}
+//	}*/
 
 
 	private static void goToCamp() {

@@ -8,6 +8,7 @@ import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import lejos.robotics.filter.MeanFilter;
+import test.TestCalibration;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -25,7 +26,7 @@ public class Capteur {
 	 /* Declaration des coordonnees obtenues via la caméra. */
 	 private int[] coordonneesCedric;
 	 private int[] coordonneesAdversaire;
-	 private ArrayList<int[]> positionsPalets;
+	 private int[] positionsPalets;// on a enlever le ArraysList sources d'erreur et pas vu l'utilité
 	 
 	 /* La constante portCam contient le port de la caméra. */
 	 private static final int portCam = 8888;
@@ -70,7 +71,7 @@ public class Capteur {
 	
 	public boolean isWhite(float[] color) {
 		/* Méthode retournant true si la couleur captée par le capteur de couleur du robot est blanche. */
-		if(color[0]<280 && color[0]>240) {
+		/*if(color[0]<280 && color[0]>240) {
 			if (color[1]<280 && color[1]>240) {
 				if (color[2]<280 && color[2]>240) {
 					return true;
@@ -78,7 +79,13 @@ public class Capteur {
 			
 			}
 		}
-		return false;
+		return false;*/
+		//TODO tester
+		color=getColor();
+		if (!TestCalibration.errorrange(TestCalibration.White[0],color[0],TestCalibration.COLORERROR) || !TestCalibration.errorrange(TestCalibration.White[1],color[1],TestCalibration.COLORERROR) || !TestCalibration.errorrange(TestCalibration.White[2],color[2],TestCalibration.COLORERROR)) {
+			return false;
+		}
+		return true;
 	}
 	
 }

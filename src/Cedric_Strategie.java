@@ -139,8 +139,7 @@ public class Cedric_Strategie {
 			
 			actionneur.returnAxe(actionneur,V2);
 			actionneur.avance();
-			while(capteur.isWhite(capteur.getColor())){ 
-				actionneur.avance();
+			while(!(capteur.isWhite(capteur.getColor()))){ 
 			}
 			actionneur.stop();
 			actionneur.ouverturePince(actionneur.getOuverturePince());

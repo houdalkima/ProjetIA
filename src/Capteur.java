@@ -71,18 +71,8 @@ public class Capteur {
 	
 	public boolean isWhite(float[] color) {
 		/* Méthode retournant true si la couleur captée par le capteur de couleur du robot est blanche. */
-		/*if(color[0]<280 && color[0]>240) {
-			if (color[1]<280 && color[1]>240) {
-				if (color[2]<280 && color[2]>240) {
-					return true;
-				}
-			
-			}
-		}
-		return false;*/
-		//TODO tester
 		color=getColor();
-		if (!TestCalibration.errorrange(TestCalibration.White[0],color[0],TestCalibration.COLORERROR) || !TestCalibration.errorrange(TestCalibration.White[1],color[1],TestCalibration.COLORERROR) || !TestCalibration.errorrange(TestCalibration.White[2],color[2],TestCalibration.COLORERROR)) {
+		if (colorSensor.getColorID()!=6) {
 			return false;
 		}
 		return true;

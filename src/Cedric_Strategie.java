@@ -147,6 +147,23 @@ public class Cedric_Strategie {
 			actionneur.fermeturePince(actionneur.getOuverturePince());
 		
 	} 
+	public boolean champLibre() {
+		/*
+		 *on récupere deux messures de distances
+		 *si la distance est négative ou trop proche pour etre un palet on recalcul ailleurs
+		 */
+		float mesure1=capteur.getDistance();
+		Delay.msDelay(5);
+		float mesure2=capteur.getDistance();
+		if (mesure1-mesure2<0.18) {
+			actionneur.rotateSC(ESQUIVE, V2, true);
+			actionneur.avanceDistance(100, true);
+			actionneur.rotateSC(-ESQUIVE, V2, true);
+			return false;
+		}
+		return true;
+	}
+
 
 	public static void main(String[] args) {
 

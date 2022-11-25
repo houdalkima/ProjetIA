@@ -164,7 +164,18 @@ public class Cedric_Strategie {
 		return true;
 	}
 
+	public void premierPalet(){
+        actionneur.ouverturePince(false);
+        actionneur.avanceDistance(500, false);
+        actionneur.fermeturePince(true);
+        actionneur.rotateSC(150,400,false);
+        actionneur.avanceDistance(300,false);
+        actionneur.rotateSC(-150,400,false);
+        goToCamp();
 
+    }
+
+	
 	public static void main(String[] args) {
 
 	}

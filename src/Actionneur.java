@@ -91,7 +91,7 @@ public class Actionneur {
 	 public void fermeturePince(boolean state) {
 		 /* Ferme les pinces du robot. */
 		 if (state) {
-			 pince.rotate(-OuverturePince);
+			 pince.rotate(-OuverturePince*2);
 			 setOuverturePince();
 		 }
 	 }
